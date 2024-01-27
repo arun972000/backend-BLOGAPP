@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import blogRoutes from './Routes/blogRoutes.js';
 import DBclient from './DB Client/connect.js';
+import cors from "cors"
 
 
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 await DBclient()
 
 app.use(json())
+app.use(cors({ origin: '*' }));
 app.use("/api",blogRoutes)
 
 const PORT = process.env.PORT || 3000;
